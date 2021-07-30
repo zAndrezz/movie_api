@@ -147,7 +147,3 @@ app.delete('/movies/:id', (req, res) => {
         res.status(201).send('movie ' + req.params.id + ' was deleted.');
     }
 });
-
-app.listen(8080, () => {
-    console.log('Your app is listening on port 8080');
-});

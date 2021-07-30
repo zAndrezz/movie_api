@@ -3,11 +3,6 @@ const express = require('express'),
 
 uuid = require('uuid');
 
-
-bodyParser = require('body-parser'),
-    app.use(bodyParser.json());
-
-
 app.use('/documentation.html', express.static('public'));
 
 //morgan logger//
@@ -16,7 +11,7 @@ morgan = require('morgan');
 app.use(morgan('common'));
 
 app.get('/movies', (req, res) => {
-    res.json(topBooks);
+    res.json(movies);
 });
 
 app.get('/', (req, res) => {
@@ -154,16 +149,14 @@ let movies = [{
 
 
 
-app.get('/movies', (req, res) => {
-    res.json(movies);
-});
+
 // Gets the data about a single movie, by title
 
 app.get('/movies/:title', (req, res) => {
     res.json(movies.find((title) => { return movie.title === req.params.title }));
 });
 
-// Adds data for a new movie to our list of movies.
+// Adds data for a new movie to our list of movies
 app.post('/movies', (req, res) => {
     let newMovies = req.body;
 
