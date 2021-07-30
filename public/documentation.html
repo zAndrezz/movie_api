@@ -8,10 +8,85 @@
 </head>
 
 <body>
+    <style>
+        .table {
+            border: 2px solid black;
+            background-color: blanchedalmond;
+        }
+        
+        tbody {
+            margin: auto;
+            border: 2px solid black;
+        }
+        
+        td {
+            border: solid black;
+            margin: 0px;
+        }
+        
+        tr {
+            border: solid black;
+            margin: 0px;
+        }
+    </style>
     <p>
         To build the server-side component of a “movies” web application. The web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create
         a list of their favorite movies.
     </p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead class="table">
+                <tr>
+                    <th>Request</th>
+                    <th>URL</th>
+                    <th>HTTP Method</th>
+                    <th>Request data format</th>
+                    <th>Response data format</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Return a list of ALL movies to the user</td>
+                    <td>/movies</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>A JSON object holding Data about all the movies.<br/> Example: <br/> </td>
+                </tr>
+                <tr>
+                    <td>Return data about a single movie by title to the user</td>
+                    <td>/movies/[title]</td>
+                    <td>GET</td>
+                    <td>none</td>
+                    <td>a JSON object holding data about a single movie, containing description, genre, director and image URL. Example: <br> {<br> "name":"movieName", <br>"description":"This is the most funniest Mafia movie you'll ever get to see.",<br>"genre":"Comedy",<br>"director":Al
+                        Capone", <br> "imageUrl", <br>"www.link.to/movie/coverartwork"</td>
+                </tr>
+                <tr>
+                    <td>a search query returning data about a genre or author by name</td>
+                    <td>/movies/?genre=[genre] or <br> /movies/?author=[author]</td>
+                    <td>GET</td>
+                    <td>the search query should contain "genre" or "author".</td>
+                    <td>a JSON object holding all movies assigned to a specific genre or author.</td>
+                </tr>
+                <tr>
+                    <td>Return data about a director</td>
+                    <td>/movies/directors/[Name]</td>
+                    <td>GET</td>
+                    <td>none</td>
+                    <td>a JSON object holding data about a director containing bio, birth year and death year. <br> Example: <br> <br> { <br> "bio": "Al Capone was the most funniest movie director ever. Especially when it comes to Mafia "movies":"", <br>                        "birth": "1927", <br> "deathYear": "2027" <br> }</td>
+                </tr>
+                <tr>
+                    <td>Allow new users to register.</td>
+                    <td>/users</td>
+                    <td>POST</td>
+                    <td> a JSON object holding data containig first name, last name, age and mail adress. <br> <br> { <br> "firstName": "Leonardo", <br> "lastName": "DiCaprio", <br> "age":"17" <br> "mailAdress": "LBI Entertainment, 2000 Avenue Of The Stars".</td>
+                    <td>A verification message if the registration has been succesfull or not.</td>
+                </tr>
+                <br><br>
+
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
