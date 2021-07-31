@@ -147,9 +147,6 @@ let movies = [{
 
 ];
 
-
-
-
 // Add movie to user list of favorites
 app.patch('/users/:Username/Favorites/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username }, {
