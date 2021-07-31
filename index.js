@@ -1,7 +1,7 @@
 const express = require('express'),
-    const app = express();
+    app = express();
 
-uuid = require('uuid');
+uuid = require('uuid')
 
 app.use('/documentation.html', express.static('public'));
 
