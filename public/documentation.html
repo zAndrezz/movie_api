@@ -82,6 +82,47 @@
                     <td> a JSON object holding data containig first name, last name, age and mail adress. <br> <br> { <br> "firstName": "Leonardo", <br> "lastName": "DiCaprio", <br> "age":"17" <br> "mailAdress": "LBI Entertainment, 2000 Avenue Of The Stars".</td>
                     <td>A verification message if the registration has been succesfull or not.</td>
                 </tr>
+                <tr>
+                    <td>Allow users to update their user info (username)</td>
+                    <td>/users/[Username]</td>
+                    <td>PUT</td>
+                    <td>A JSON object holding data about the user to register.<br/>Example:<br/> <span class="green"> 
+                        {<br/>
+                        "Username": "testuser-update",
+                        "Password": "test-update",
+                        "Email": "test-update@web.er",
+                        "Birthday": "1010-01-01T00:00:00.000Z"
+                        }</span>
+                    </td>
+                    <td>A JSON object holding data about the user to register.
+                    </td>
+                </tr>
+                <tr>
+                    <td>Allow users to add a movie to their list of favorites</td>
+                    <td>/users/[Username]/Favorites/[ObjectId]</td>
+                    <td>PATCH</td>
+                    <td>None</td>
+                    <td>A JSON object contains data about the movie add to the list</td>
+                </tr>
+
+                <tr>
+                    <td>Allow users to remove a movie from their list of favorites.</td>
+                    <td>/users/[Username]/Favorites/[ObjectId]</td>
+                    <td>DELETE</td>
+                    <td>None</td>
+                    <td>A JSON object contains data about the movie add to the list.</td>
+                </tr>
+                <tr>
+                    <td>Allow existing users to deregister</td>
+                    <td>/users/[Username]</td>
+                    <td>DELETE</td>
+                    <td>None</td>
+                    <td>A text message indicating the user was successfully deregistered</td>
+                </tr>
+
+
+
+
                 <br><br>
 
             </tbody>

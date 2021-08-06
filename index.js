@@ -119,9 +119,9 @@ app.get("/movies/:title", (req, res) => {
 });
 
 //a search query returning data about a genre or author by name//
-app.get("/genres/:genre", (req, res) => {
-    const genre = movies.find((genre) => genre.genres === req.params.genres);
-    if (!genre) {
+app.get("/movies/genres/:genre", (req, res) => {
+    const genre = movies.find((m) => m.genres === req.params.genre);
+    if (!genres) {
         res.status(404).send("genre not found!");
     } else {
         res.json(genre);
@@ -130,4 +130,8 @@ app.get("/genres/:genre", (req, res) => {
 
 app.listen(8080, () => {
     console.log("Your app is listening on port 8080.");
+});
+
+movies.forEach(function(movie) {
+    console.log(movie.genres);
 });
