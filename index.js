@@ -57,7 +57,7 @@ app.get("/movies/genre/:genre", (req, res) => {
 
 app.get("/movies/director/:director", (req, res) => {
     message =
-        "a JSON object holding all movies assigned to a specific  author.'" +
+        "a JSON object holding all movies assigned to a specific  director.'" +
         req.params.director +
         "'";
     res.status(201).send(message);
