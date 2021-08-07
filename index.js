@@ -67,28 +67,15 @@ app.get("/movies/director/:director", (req, res) => {
 app.post("/:username", (req, res) => {
     let newUser = req.params.username;
 
-    if (!newUser) {
-        message = "Missing name";
-        res.status(400).send(message);
-    } else {
-        users.push(newUser);
-        message = "	New user " + newUser + " has registered. Welcome!";
-        res.status(201).send(message);
-    }
+    message = "	New user " + newUser + " has registered. Welcome!";
+    res.status(201).send(message);
 });
 
 // Allow users to update their user info (username)
 app.put("/:username", (req, res) => {
     let newUsername = req.params.username;
-
-    if (!newUsername) {
-        message = "Missing name . . .";
-        res.status(400).send(message);
-    } else {
-        users.name = newUsername;
-        message = "Your new username is " + newUsername;
-        res.status(201).send(message);
-    }
+    message = "Your new username is " + newUsername;
+    res.status(201).send(message);
 });
 
 //Return a list of user's favorite movies
