@@ -47,7 +47,7 @@ app.get("/movies/:title", (req, res) => {
 });
 
 //a search query returning data about a genre or author by name//
-app.get("/movies/genre/:genre", (req, res) => {
+app.get("/movies/genres/:genre", (req, res) => {
     message =
         "A JSON object containing data of all movies with genre '" +
         req.params.genre +
@@ -55,7 +55,7 @@ app.get("/movies/genre/:genre", (req, res) => {
     res.status(201).send(message);
 });
 
-app.get("/movies/director/:director", (req, res) => {
+app.get("/movies/directors/:director", (req, res) => {
     message =
         "a JSON object holding all movies assigned to a specific  director.'" +
         req.params.director +
@@ -64,7 +64,7 @@ app.get("/movies/director/:director", (req, res) => {
 });
 
 // Allow new users to register
-app.post("/:username", (req, res) => {
+app.post("/:users", (req, res) => {
     let newUser = req.params.username;
 
     message = "	New user " + newUser + " has registered. Welcome!";
@@ -72,8 +72,8 @@ app.post("/:username", (req, res) => {
 });
 
 // Allow users to update their user info (username)
-app.put("/:username", (req, res) => {
-    let newUsername = req.params.username;
+app.put("/:users", (req, res) => {
+    let newUsername = req.params.users;
     message = "Your new username is " + newUsername;
     res.status(201).send(message);
 });
