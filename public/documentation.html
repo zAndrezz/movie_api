@@ -47,7 +47,7 @@
                     </tr>
                     <tr>
                         <td>a search query returning data about a genre or author by name</td>
-                        <td>/movies/genre/:genre or <br> </td>
+                        <td>/movies/genres/:genre or <br> </td>
                         <td>GET</td>
                         <td>the search query should contain "genre" .</td>
                         <td>a JSON object holding all movies assigned to a specific genre or author.</td>
@@ -61,14 +61,14 @@
                     </tr>
                     <tr>
                         <td>Allow new users to register.</td>
-                        <td>/:usersname</td>
+                        <td>/:users</td>
                         <td>POST</td>
                         <td> a JSON object holding data containig first name, last name, age and mail adress. <br> </td>
                         <td>A verification message if the registration has been succesfull or not.</td>
                     </tr>
                     <tr>
                         <td>Allow users to update their user info (username)</td>
-                        <td>/:username</td>
+                        <td>/:users</td>
                         <td>PUT</td>
                         <td>A JSON object holding data about the user to register.<br/>
                         </td>
