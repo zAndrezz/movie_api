@@ -70,7 +70,9 @@ app.get("/directors", (req, res) => {
 
 // Gets the data about the name of the director
 app.get("/director/:Name", (req, res) => {
-    Directors.findOne({ Name: req.params.Name })
+    Directors.findOne({
+            Name: req.params.Name,
+        })
         .then((director) => {
             res.json(director);
         })
@@ -210,7 +212,7 @@ app.post("/users/:Username/movies/:MovieID", (req, res) => {
 });
 
 // Remove a movie form user's fav list
-app.delete("/users/:Username/favorites/:_id", (req, res) => {
+app.delete("/users/:Username/FavoriteMovies/:_id", (req, res) => {
     Users.findOneAndUpdate({
             Username: req.params.Username,
         }, {
