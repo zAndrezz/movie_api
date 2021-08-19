@@ -25,6 +25,7 @@
         "method-override": "^3.0.0",
         "mongoose": "^5.13.7",
         "morgan": "^1.10.0",
+        "nodemon": "^2.0.12",
         "passport": "^0.4.1",
         "start": "^5.1.0",
         "uuid": "^8.3.2"

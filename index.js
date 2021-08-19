@@ -22,8 +22,6 @@ app.use(bodyParser.json());
 app.use(morgan("common"));
 app.use(express.static("public"));
 
-let users = [];
-
 // GET requests
 app.get("/", (req, res) => {
     res.send("Welcome to my Movie Database");
@@ -211,16 +209,16 @@ app.post("/users/:Username/movies/:MovieID", (req, res) => {
     );
 });
 
-// Remove a movie form user's fav list
-app.delete("/users/:Username/FavoriteMovies/:_id", (req, res) => {
+//delete movie from users favorite list
+app.delete("/users/:Username/removeFromFav/:MovieID", (req, res) => {
     Users.findOneAndUpdate({
             Username: req.params.Username,
         }, {
             $pull: {
-                FavoritMovies: req.params._id,
+                FavoriteMovies: req.params.MovieID,
             },
         }, {
-            new: true,
+            new: true, //This line makes sure that the updated Document is returned
         },
         (err, updatedUser) => {
             if (err) {
