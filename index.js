@@ -67,9 +67,9 @@ app.get("/directors", (req, res) => {
 });
 
 // Gets the data about the name of the director
-app.get("/director/:Name", (req, res) => {
+app.get("/directors/:Name", (req, res) => {
     Directors.findOne({
-            Name: req.params.Name,
+            "Director.Name": req.params.Name,
         })
         .then((director) => {
             res.json(director);
