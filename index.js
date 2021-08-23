@@ -41,6 +41,11 @@ app.use(bodyParser.json());
 app.use(morgan("common"));
 app.use(express.static("public"));
 
+//GET Documentation
+app.get("/documentation", (req, res) => {
+    res.sendFile("public/documentation.html", { root: __dirname });
+});
+
 // GET requests
 app.get("/", (req, res) => {
     res.send("Welcome to my Movie Database");

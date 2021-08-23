@@ -16,7 +16,7 @@
     </p>
     <section>
         <div class="tbl-header">
-            <table cellpadding="0" cellspacing="0" border="0">
+            <table cellpadding="0" cellspacing="0" border="0" style="table-layout: fixed; width: 100%">
                 <thead>
                     <tr>
                         <th>Request</th>
@@ -29,73 +29,100 @@
             </table>
         </div>
         <div class="tbl-content">
-            <table cellpadding="0" cellspacing="0" border="0">
+            <table cellpadding="0" cellspacing="0" border="0" style="table-layout: fixed; width: 100%">
                 <tbody>
                     <tr>
-                        <td>Return a list of ALL movies to the user</td>
+                        <td>Return a list of all the movies</td>
                         <td>/movies</td>
                         <td>GET</td>
                         <td>None</td>
-                        <td>A JSON object holding Data about all the movies.<br/> </td>
+                        <td>
+                            A JSON object holding data about all the movies <br /> Example: <br /> [ { "Genre": { "Name": "Genre Name", "Description": "Genre Description" }, "Director": { "Name": "Director's Name", "Bio": "Director's Bio", "Birth": "Date"
+                            }, "_id": "ID", "Title": "Movie Title", "Description": "Movie Description", "ImagePath": "movieImg.jpg", "Featured": boolean }]
+                        </td>
                     </tr>
                     <tr>
                         <td>Return data about a single movie by title to the user</td>
                         <td>/movies/[title]</td>
                         <td>GET</td>
-                        <td>none</td>
-                        <td>a JSON object holding data about a single movie, containing description, genre, director and image URL. </td>
+                        <td>None</td>
+                        <td>
+                            A JSON object holding data about a single movie, containing a description, genre, dirctor
+                        </td>
                     </tr>
                     <tr>
-                        <td>a search query returning data about a genre or author by name</td>
-                        <td>/movies/genres/:genre or <br> </td>
+                        <td>Return data about a genre(description) by title</td>
+                        <td>/genre/[name]</td>
                         <td>GET</td>
-                        <td>the search query should contain "genre" .</td>
-                        <td>a JSON object holding all movies assigned to a specific genre or author.</td>
+                        <td>None</td>
+                        <td>
+                            A JSON object holding data about a genre <br /> Example: [ { "_id": "6117add3c32d54013b3f5a23", "Name": "Thriller", "Description": "Thriller films are known to promote intense excitement, suspense, and a high level of anticipation
+                            with nerve-wracking tension." }] <br />
+                        </td>
                     </tr>
                     <tr>
                         <td>Return data about a director</td>
-                        <td>/movies/directors/:director</td>
+                        <td>/directors/[name]</td>
                         <td>GET</td>
-                        <td>none</td>
-                        <td>a JSON object holding data about a director containing bio, birth year and death year. <br></td>
+                        <td>None</td>
+                        <td>
+                            A JSON object holding a single director's data <br /> Example: <br /> { "_id": "6117b53a646889ab609c5855", "Name": "Martin Scorsese", "Bio": "One of the major figures of the new Hollywood era, he is widely regarded as one of
+                            the most significant and influential directors in the film history", "Birth": "1942-11-17T00:00:00.000Z" }
+                        </td>
                     </tr>
                     <tr>
-                        <td>Allow new users to register.</td>
-                        <td>/:users</td>
+                        <td>Allow new users to register</td>
+                        <td>/users</td>
                         <td>POST</td>
-                        <td> a JSON object holding data containig first name, last name, age and mail adress. <br> </td>
-                        <td>A verification message if the registration has been succesfull or not.</td>
+                        <td>
+                            A JSON object holding data about a user to add: <br /> { <br />"Username": "String", <br />"Password": "String",
+                            <br />"Email": "String", <br />"Born": "Date", <br />}
+                        </td>
+                        <td>
+                            Response: <br /> { <br /> "id": "3"<br />"Username": "mannjaiswal", <br />"Password": "careerfoundry", <br />"Email": "mannjaiswal5@gmail.com", <br /> "Born": "1999-09-11"}
+                        </td>
                     </tr>
                     <tr>
-                        <td>Allow users to update their user info (username)</td>
-                        <td>/:users</td>
+                        <td>Allow users to update their username</td>
+                        <td>/users/[username]</td>
                         <td>PUT</td>
-                        <td>A JSON object holding data about the user to register.<br/>
+                        <td>
+                            Send query parameter to{myinfo:[ { username:String, email:String, password:String, birthday: Date, FavoriteMovies: [] } ]}
                         </td>
-                        <td>A JSON object holding data about the user to register.
+                        <td>
+                            Response: <br /> { "FavoriteMovies": [ "6112fa959c6dacfcc543e59b" ], "_id": "6113453daf5d66f1c029f460", "Username": "Bruce Wayne", "Password": "Black", "Email": "Batman@gmail.com", "Born": "1975-05-05T00:00:00.000Z" }
                         </td>
                     </tr>
-                    <tr>
-                        <td>Allow users to add a movie to their list of favorites</td>
-                        <td>/username/favorites</td>
-                        <td>PATCH</td>
-                        <td>None</td>
-                        <td>A JSON object contains data about the movie add to the list</td>
-                    </tr>
+                    <tr style="word-wrap: break-word">
+                        <td>Allow users to add a movie to their favorites list</td>
+                        <td>/users/[username]/movies/[movieID]</td>
+                        <td>POST</td>
+                        <td>
+                            Send data through URL adding the username and the movieID in the requested parameters <br /> example: <br /> /users/Bruce%20Wayne/movies/29u8329v93i0952009r4 </td> <br>
 
-                    <tr>
-                        <td>Allow users to remove a movie from their list of favorites.</td>
-                        <td>/username/favorites/:title</td>
+                        <td style="table-layout: fixed; width: 100%">
+                            A JSON object holding data about the movie was added to your favorites list <br /> example: <br /> { "FavoriteMovies": [ "6112fa959c6dacfcc543e59b" ]} <br>
+                        </td> <br>
+                    </tr>
+                    <tr style="word-wrap: break-word">
+                        <td>Allow users to remove a movie from their favorites list</td>
+                        <td>/users/[username]/movies/[movieID]</td>
                         <td>DELETE</td>
-                        <td>None</td>
-                        <td>A JSON object contains data about the movie add to the list.</td>
+                        <td style="table-layout: fixed; width: 100%">
+                            Send data through URL adding the username and the movieID in the requested parameters <br /> example: <br> /users/Bruce%20Wayne/movies/29u8329v93i0952009r4 <br>
+                        </td> <br>
+                        <td>
+                            A text message indicating that the movie was removed from the favorites list
+                        </td> <br>
                     </tr>
                     <tr>
                         <td>Allow existing users to deregister</td>
-                        <td>/username]</td>
+                        <td>/users/[username]</td>
                         <td>DELETE</td>
-                        <td>None</td>
-                        <td>A text message indicating the user was successfully deregistered</td>
+                        <td>
+                            Send data through URL in the requested parameters <br /> example: <br /> /users/Bruce%20Wayne
+                        </td>
+                        <td>A text message indicating that the user has been deregistered</td>
                     </tr>
 
 
