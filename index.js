@@ -28,7 +28,7 @@ mongoose.connection.on("disconnected", () => {
     console.log("disconnected");
     console.log(mongoose.connection.readyState); //logs 0
 });
-mongoose.connect("mongodb://localhost:27017/myFlixDB", {
+mongoose.connect(process.env.CONNECTION_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
