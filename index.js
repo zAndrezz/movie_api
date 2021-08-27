@@ -209,60 +209,48 @@ app.get(
             });
     }
 );
-
-// Add a user
-
-//Add a user
-//expects a json object
-//Username must be alphanumeric
-//Password must be at least 8 characters long
-//Email must be a well formatted email
+//add user
 app.post(
     "/users", [
-        check("Username", "Username is required").not().isEmpty(),
+        check("Username", "Username is required").isLength({ min: 5 }),
         check(
             "Username",
-            "Username can only contain letters and numbers"
+            "Username contains non alphanumeric characters not allowed."
         ).isAlphanumeric(),
-        check("Password", "Password must be at least 8 characters long").isLength({
-            min: 8,
-        }),
+        check("Password", "Password is required").not().isEmpty(),
         check("Email", "Email does not appear to be valid").isEmail(),
     ],
     (req, res) => {
+        // check the validation object for errors
         let errors = validationResult(req);
 
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
         }
-
-        //hashes password so plaintext will not be stored in the database
         let hashedPassword = Users.hashPassword(req.body.Password);
-
-        //creates user if Username is not already taken
-        Users.findOne({ Username: req.body.Username })
+        Users.findOne({ Username: req.body.username })
             .then((user) => {
                 if (user) {
-                    return res.status(400).send(req.body.Username + " already exists");
+                    return res.status(400).send(req.body.Username + "already exists");
                 } else {
                     Users.create({
                             Username: req.body.Username,
                             Password: hashedPassword,
                             Email: req.body.Email,
-                            Birthday: req.body.Birthday,
+                            Born: req.body.Born,
                         })
                         .then((user) => {
                             res.status(201).json(user);
                         })
                         .catch((error) => {
                             console.error(error);
-                            res.status(500).send("Error: " + error);
+                            res.status(500).send("Error:" + error);
                         });
                 }
             })
             .catch((error) => {
                 console.error(error);
-                res.status(500).send("Error: " + error);
+                res.status(500).send("Error:" + error);
             });
     }
 );
