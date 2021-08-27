@@ -212,32 +212,38 @@ app.get(
 
 // Add a user
 
+//Add a user
+//expects a json object
+//Username must be alphanumeric
+//Password must be at least 8 characters long
+//Email must be a well formatted email
 app.post(
     "/users", [
-        check("Username", "Username is required").isLength({ min: 5 }),
+        check("Username", "Username is required").not().isEmpty(),
         check(
             "Username",
-            "Username contains non alphanumeric characters - not allowed."
+            "Username can only contain letters and numbers"
         ).isAlphanumeric(),
-        check("Password", "Password is required").not().isEmpty(),
+        check("Password", "Password must be at least 8 characters long").isLength({
+            min: 8,
+        }),
         check("Email", "Email does not appear to be valid").isEmail(),
     ],
-
     (req, res) => {
-        // check the validation object for errors
         let errors = validationResult(req);
 
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
         }
+
+        //hashes password so plaintext will not be stored in the database
         let hashedPassword = Users.hashPassword(req.body.Password);
-        Users.findOne({
-                Username: req.body.Username, // <= Search to see if a user with the requested username already exists
-            })
+
+        //creates user if Username is not already taken
+        Users.findOne({ Username: req.body.Username })
             .then((user) => {
                 if (user) {
-                    //If the user is found, send a response that it already exists
-                    return res.status(400).send(req.body.Username + "already exists");
+                    return res.status(400).send(req.body.Username + " already exists");
                 } else {
                     Users.create({
                             Username: req.body.Username,
