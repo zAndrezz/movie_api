@@ -217,7 +217,7 @@ app.post(
             "Username",
             "Username contains non alphanumeric characters not allowed."
         ).isAlphanumeric(),
-        check("Password", "Password is required").not().isEmpty(),
+        check("password", "password is required").not().isEmpty(),
         check("Email", "Email does not appear to be valid").isEmail(),
     ],
     (req, res) => {
@@ -235,9 +235,9 @@ app.post(
                 } else {
                     Users.create({
                             Username: req.body.Username,
-                            Password: hashedPassword,
+                            password: hashedPassword,
                             Email: req.body.Email,
-                            Born: req.body.Born,
+                            Birthday: req.body.Birthday,
                         })
                         .then((user) => {
                             res.status(201).json(user);
