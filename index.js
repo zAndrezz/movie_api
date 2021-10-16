@@ -245,7 +245,7 @@ app.post(
 // Update a user's username
 app.put(
     "/users/:Username",
-    passport.authenticate("jwt", { session: false }),
+
     (req, res) => {
         Users.findOneAndUpdate({
                 Username: req.params.Username,
